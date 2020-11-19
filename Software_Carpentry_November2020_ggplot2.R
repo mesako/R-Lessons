@@ -213,9 +213,9 @@ ggplot(mtcars, aes(x = gear, y = mpg)) +
 
 
 ggplot(mtcars, aes(x = gear, y = mpg)) + 
-  geom_bar(stat = "summary", fun.y = "median")
+  geom_bar(stat = "summary", fun = "median")
 
-ggplot(mtcars, aes(x = gear, y = mpg)) + geom_bar(stat = "summary", fun.y = "median")
+ggplot(mtcars, aes(x = gear, y = mpg)) + geom_bar(stat = "summary", fun = "median")
 # What would you want to see in this plot?
 
 
@@ -232,21 +232,21 @@ ggplot(mtcars, aes(x = gear, y = mpg)) + geom_bar(stat = "summary", fun.y = "med
 
 # these give the same barplot
 ggplot(mtcars, aes(x = gear, y = mpg)) + 
-  geom_bar(stat = "summary", fun.y = "mean")
+  geom_bar(stat = "summary", fun = "mean")
 ggplot(mtcars, aes(x = gear, y = mpg)) + 
-  stat_summary(geom = "bar", fun.y = mean, 
+  stat_summary(geom = "bar", fun = mean, 
                position = "dodge")
 
 # same as above where we used geom_bar, just different semantics
 
 # stat_summary can be used with other geoms besides barplots
 ggplot(mtcars, aes(x = gear, y = mpg)) + 
-  stat_summary(geom = "point", fun.y = mean, position = "identity")
+  stat_summary(geom = "point", fun = mean, position = "identity")
 ggplot(mtcars, aes(x = gear, y = mpg)) + 
-  stat_summary(geom = "line", fun.y = mean, position = "identity")
+  stat_summary(geom = "line", fun = mean, position = "identity")
 
 ggplot(mtcars, aes(x = gear, y = mpg)) + 
-  stat_summary(geom = "bar", fun.y = mean, 
+  stat_summary(geom = "bar", fun = mean, 
                position = "dodge") +
   stat_summary(geom = "errorbar", fun.data = mean_se, 
                position = "dodge", width = 0.2) 
@@ -335,7 +335,7 @@ dev.off() # finishes editing the file
 
 # Special Extras
 ## Custom Colors
-install.packages("RColorBrewer")
+# install.packages("RColorBrewer")
 library(RColorBrewer) # useful for other color palettes
 # scale_fill_manual(values = c()) # manually specific the colors
 # scale_fill_brewer(palette = "Blues") # generate new color options
