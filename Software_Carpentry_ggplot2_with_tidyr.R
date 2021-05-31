@@ -59,16 +59,12 @@ print(my.plot)
 
 
 
-ggplot(msleep, aes(x = brainwt, y = sleep_rem)) + geom_point() # scatterplot
-print(my.plot)
-### What is wrong with my.plot and how do we fix it?
+my.plot <- ggplot(msleep, aes(x = brainwt, y = sleep_rem)) + geom_point() # scatterplot
+my.plot
 
-
+# we may want to transform/scale certain variables before visualizing
 msleep2 <- msleep %>% mutate(brainwt_log = log(brainwt))
-
-ggplot(msleep2, aes(x = brainwt_log, y = sleep_rem)) + geom_point() # scatterplot
-
-
+ggplot(msleep2, aes(x = brainwt_log, y = sleep_rem)) + geom_point()
 
 ### What happens if we add a different geom?
 my.plot <- ggplot(msleep2, aes(x = brainwt_log, y = sleep_rem)) + 
@@ -126,43 +122,6 @@ ggplot(msleep2, aes(x = brainwt_log, y = sleep_rem, shape = vore)) +
 # fill, group, label, color, shape, linetype
 
 
-# Plot Customization
-## Labels
-# These functionally do the same thing:
-my.plot + ggtitle("hi") + xlab("yo") + ylab("hey")
-my.plot + labs(title = "Practice", x = "new x axis",
-               y = "new y axis")
-
-##### INDIVIDUAL ACTIVITY #####
-# Change the labels (title or axes) on a prior plot that you made.
-# Post a checkmark reaction in Zoom when you are done with this task.
-
-
-
-
-## Legends
-my.plot <- ggplot(msleep2, aes(x = brainwt_log, 
-                               y = sleep_rem, 
-                               color = vore)) + 
-  geom_point()
-my.plot 
-
-my.plot + theme(legend.position = "bottom")
-## Guess other positions that are acceptable besides "bottom"!
-# Share in Zoom chat which position labels work after you test it.
-
-
-
-
-my.plot + guides(color = "none") # no legend shown
-
-my.plot <- ggplot(msleep2, aes(x = brainwt_log, 
-                               y = sleep_rem, 
-                               color = vore)) + 
-  geom_point()
-
-my.plot + labs(color = "Feeding Behavior") # change legend label
-
 # One Dimensional Plot (One Variable)
 ## Discrete Variables
 ggplot(msleep2, aes(vore)) + geom_bar() # bar plots
@@ -194,17 +153,12 @@ ggplot(msleep2, aes(x = vore, y = awake)) +
 ggplot(msleep2, aes(x = vore, y = awake)) + 
   geom_bar(stat = "summary", fun = "median")
 
-# What would you want to see in this plot?
-
-
-
-
 ##### INDIVIDUAL ACTIVITY #####
 # Create a barplot for your own dataset.
 # Post a checkmark reaction in Zoom when you are done with this task.
+# What would you want to see in this plot?
 
-ggplot(msleep2, aes(x = vore, y = awake)) + 
-  geom_bar(stat = "summary", fun = "median")
+
 
 
 ## Error Bars
@@ -290,6 +244,45 @@ my.plot + geom_smooth(method = "loess") # local polynomial regression
 # the built-in heatmap function meets many needs while the
 # ggplot2 equivalent (geom_tile) can be confusing
 # I don't recommend ggplot2 for heatmaps
+
+
+# Plot Customization
+## Labels
+# These functionally do the same thing:
+my.plot + ggtitle("hi") + xlab("yo") + ylab("hey")
+my.plot + labs(title = "Practice", x = "new x axis",
+               y = "new y axis")
+
+##### INDIVIDUAL ACTIVITY #####
+# Change the labels (title or axes) on a prior plot that you made.
+# Post a checkmark reaction in Zoom when you are done with this task.
+
+
+
+
+## Legends
+my.plot <- ggplot(msleep2, aes(x = brainwt_log, 
+                               y = sleep_rem, 
+                               color = vore)) + 
+  geom_point()
+my.plot 
+
+my.plot + theme(legend.position = "bottom")
+## Guess other positions that are acceptable besides "bottom"!
+# Share in Zoom chat which position labels work after you test it.
+
+
+
+
+my.plot + guides(color = "none") # no legend shown
+
+my.plot <- ggplot(msleep2, aes(x = brainwt_log, 
+                               y = sleep_rem, 
+                               color = vore)) + 
+  geom_point()
+
+my.plot + labs(color = "Feeding Behavior") # change legend label
+
 
 # Saving Your Figures
 ggplot(msleep3, aes(x = brainwt_log, y = bodywt_log)) + geom_point() +
@@ -447,4 +440,3 @@ ggplot(data = points,
        y = "my y axis",
        caption = "this is a caption",
        col = "Renamed Legend") 
-
