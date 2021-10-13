@@ -228,6 +228,11 @@ If you finish sharing early, please discuss your goals for what you want to lear
 
 *Your response here*
 
+```{r}
+# plot(true, fit)
+# predict()
+```
+
 ------
 
 #### Breakout Room Activity
